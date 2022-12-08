@@ -6,9 +6,9 @@ class Baza {
 
     constructor() {
         this.vezaDB = mysql.createConnection({
-            host: "34.65.190.83",
-            user: "root",
-            password: "?}:FIF<Yn0PvH&Gy",
+            host: "eu-cdbr-west-03.cleardb.net",
+            user: "bde233f063851b",
+            password: "93a9ac41",
             database: "heroku_d1561a1a0615483"
         });
     }
