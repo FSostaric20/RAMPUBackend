@@ -46,10 +46,6 @@ function pripremiPutanje(){
    server.put("/namirnice",putNamirnice)
    server.delete("/namirnice",deleteNamirnice)
 
-   server.post("/namirnicerecepta",postRecepteNamirnice)
-   server.delete("/namirnicerecepta",deleteRecepteNamirnice)
-   server.delete("/namirnicerecepta",deleteRecepteNamirnice)
-
    server.post("/",)
    server.put("/",)
    server.delete("/",)
