@@ -134,7 +134,7 @@ function postNamirnice(zahtjev,odgovor){
     let nDAO = new namirnicaDAO();
     let podaci = zahtjev.body;
     nDAO.dodaj(podaci).then(() =>{
-        odgovor.send("uspjeh");
+        odgovor.send(true);
     }).catch((error) =>{
         console.log(error)
     });
