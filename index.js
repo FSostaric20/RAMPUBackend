@@ -132,11 +132,8 @@ function getNamirnice(zahtjev,odgovor){
 function postNamirnice(zahtjev,odgovor){
     odgovor.type("application/json")
     let nDAO = new namirnicaDAO();
-    let naziv = zahtjev.naziv;
-    let idMJ = zahtjev.idMJ;
-    let KH = zahtjev.KH;
-    let KK = zahtjev.KK;
-    nDAO.dodaj(naziv,idMJ,KH,KK).then(() =>{
+    let podaci = zahtjev.body;
+    nDAO.dodaj(podaci).then(() =>{
         odgovor.send("uspjeh");
     }).catch((error) =>{
         console.log(error)

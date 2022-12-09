@@ -14,9 +14,9 @@ class namirnicaDAO{
         return podaci;
     }
     
-    dodaj = async function (naziv,idMJ,KH,KK) {
+    dodaj = async function (namirnica) {
         let sql = "INSERT INTO heroku_d1561a1a0615483.namirnica (naziv,kolicina_hladnjak,mjerna_jedinica_id,kolicina_kupovina) VALUES (?,?,?,?)";
-        let podaci = [naziv,KH,idMJ,KK];
+        let podaci= [namirnica.naziv,namirnica.KH,namirnica.mjID,namirnica.KK]
         await this.baza.izvrsiUpit(sql,podaci);
         return true;
     }
