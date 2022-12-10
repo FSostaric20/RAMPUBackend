@@ -44,7 +44,7 @@ function pripremiPutanje(){
    
    server.post("/namirnice",postNamirnice)
    server.put("/namirnice",putNamirnice)
-   server.delete("/namirnice",deleteNamirnice)
+   server.delete("/namirnice/:naziv",deleteNamirnice)
 
    server.post("/",)
    server.put("/",)
@@ -155,7 +155,7 @@ function putNamirnice(zahtjev,odgovor){
 function deleteNamirnice(zahtjev,odgovor){
     odgovor.type("application/json")
     let nDAO = new namirnicaDAO();
-    let naziv = zahtjev.body.naziv;
+    let naziv = zahtjev.params.naziv;
     nDAO.obrisi(naziv).then(() =>{
         odgovor.send(true);
     }).catch((error) => {
