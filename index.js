@@ -143,11 +143,10 @@ function postNamirnice(zahtjev,odgovor){
 function putNamirnice(zahtjev,odgovor){
     odgovor.type("application/json")
     let nDAO = new namirnicaDAO();
-    let KH = zahtjev.KH;
-    let KK = zahtjev.KK;
-    let id = zahtjev.id;
-    nDAO.azuriraj(KH,KK,id).then(() =>{
-        odgovor.send("uspjeh");
+    let KK = zahtjev.body.KK;
+    let naziv = zahtjev.body.naziv;
+    nDAO.azuriraj(KK,naziv).then(() =>{
+        odgovor.send(true);
     }).catch((error) => {
         console.log(error)
     })

@@ -27,9 +27,9 @@ class namirnicaDAO{
         return true;
     }
     
-    azuriraj = async function (KH,KK,id) {
-        let sql = "UPDATE heroku_d1561a1a0615483.namirnica SET kolicina_hladnjak=?, kolicina_kupovina=? WHERE id=?";
-        let podaci = [KH,KK,id]
+    azuriraj = async function (KK,naziv) {
+        let sql = "UPDATE heroku_d1561a1a0615483.namirnica SET kolicina_kupovina=? WHERE naziv=?";
+        let podaci = [KK,naziv]
         await this.baza.izvrsiUpit(sql,podaci);
         return true;
     }
