@@ -18,6 +18,7 @@ class namirnicaDAO{
         let sql = "INSERT INTO heroku_d1561a1a0615483.namirnica (naziv,kolicina_hladnjak,mjerna_jedinica_id,kolicina_kupovina) VALUES (?,?,?,?)";
         let podaci= [namirnica.naziv,namirnica.kolicina_hladnjak,namirnica.mjerna_jedinica_id.id,namirnica.kolicina_kupovina]
         await this.baza.izvrsiUpit(sql,podaci);
+        this.baza.zatvoriVezu();
         return true;
     }
     
@@ -31,6 +32,7 @@ class namirnicaDAO{
         let sql = "UPDATE heroku_d1561a1a0615483.namirnica SET kolicina_hladnjak=?, kolicina_kupovina=? WHERE naziv=?";
         let podaci = [kolicina_hladnjak, kolicina_kupovina, naziv]
         await this.baza.izvrsiUpit(sql,podaci);
+        this.baza.zatvoriVezu();
         return true;
     }
 
@@ -38,6 +40,7 @@ class namirnicaDAO{
         let sql = "UPDATE heroku_d1561a1a0615483.namirnica SET kolicina_hladnjak=? WHERE naziv=?";
         let podaci = [kolicina_hladnjak, naziv]
         await this.baza.izvrsiUpit(sql,podaci);
+        this.baza.zatvoriVezu();
         return true;
     }
 
@@ -45,6 +48,7 @@ class namirnicaDAO{
         let sql = "UPDATE heroku_d1561a1a0615483.namirnica SET kolicina_kupovina=? WHERE naziv=?";
         let podaci = [kolicina_kupovina,naziv]
         await this.baza.izvrsiUpit(sql,podaci);
+        this.baza.zatvoriVezu();
         return true;
     }
 
