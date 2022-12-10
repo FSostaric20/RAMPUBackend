@@ -27,9 +27,23 @@ class namirnicaDAO{
         return true;
     }
     
-    azuriraj = async function (KK,naziv) {
+    azurirajSve = async function (naziv, kolicina_hladnjak, kolicina_kupovina) {
+        let sql = "UPDATE heroku_d1561a1a0615483.namirnica SET kolicina_hladnjak=?, kolicina_kupovina=? WHERE naziv=?";
+        let podaci = [kolicina_hladnjak, kolicina_kupovina, naziv]
+        await this.baza.izvrsiUpit(sql,podaci);
+        return true;
+    }
+
+    azurirajHladnjak = async function (naziv, kolicina_hladnjak) {
+        let sql = "UPDATE heroku_d1561a1a0615483.namirnica SET kolicina_hladnjak=? WHERE naziv=?";
+        let podaci = [kolicina_hladnjak, naziv]
+        await this.baza.izvrsiUpit(sql,podaci);
+        return true;
+    }
+
+    azurirajListuZaKupnju = async function (naziv, kolicina_kupovina) {
         let sql = "UPDATE heroku_d1561a1a0615483.namirnica SET kolicina_kupovina=? WHERE naziv=?";
-        let podaci = [KK,naziv]
+        let podaci = [kolicina_kupovina,naziv]
         await this.baza.izvrsiUpit(sql,podaci);
         return true;
     }

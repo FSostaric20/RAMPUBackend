@@ -143,13 +143,31 @@ function postNamirnice(zahtjev,odgovor){
 function putNamirnice(zahtjev,odgovor){
     odgovor.type("application/json")
     let nDAO = new namirnicaDAO();
-    let KK = zahtjev.body.KK;
+    let kolicina_kupovina = zahtjev.body.kolicina_kupovina;
+    let kolicina_hladnjak = zahtjev.body.kolicina_hladnjak;
     let naziv = zahtjev.body.naziv;
-    nDAO.azuriraj(KK,naziv).then(() =>{
-        odgovor.send(true);
-    }).catch((error) => {
-        console.log(error)
-    })
+
+    if(kolicina_hladnjak == -1){
+        nDAO.azurirajListuZaKupnju(naziv,kolicina_kupovina).then(() =>{
+            odgovor.send(true);
+        }).catch((error) => {
+            console.log(error)
+        })
+    } 
+    else if(kolicina_kupovina == -1){
+        nDAO.azurirajHladnjak(naziv,kolicina_hladnjak).then(() =>{
+            odgovor.send(true);
+        }).catch((error) => {
+            console.log(error)
+        })
+    } 
+    else{
+        nDAO.azurirajSve(naziv,kolicina_hladnjak,kolicina_kupovina).then(() =>{
+            odgovor.send(true);
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
 }
 
 function deleteNamirnice(zahtjev,odgovor){
