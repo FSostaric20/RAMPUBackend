@@ -21,9 +21,9 @@ class namirnicaDAO{
         return true;
     }
     
-    obrisi = async function (id) {
-        let sql = "DELETE FROM heroku_d1561a1a0615483.namirnica WHERE id=?";
-        await this.baza.izvrsiUpit(sql,[id]);
+    obrisi = async function (naziv) {
+        let sql = "DELETE FROM heroku_d1561a1a0615483.namirnica WHERE naziv=?";
+        await this.baza.izvrsiUpit(sql,[naziv]);
         return true;
     }
     

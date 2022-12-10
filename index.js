@@ -155,9 +155,9 @@ function putNamirnice(zahtjev,odgovor){
 function deleteNamirnice(zahtjev,odgovor){
     odgovor.type("application/json")
     let nDAO = new namirnicaDAO();
-    let id = zahtjev.id;
-    nDAO.obrisi(id).then(() =>{
-        odgovor.send("uspjeh");
+    let naziv = zahtjev.body.naziv;
+    nDAO.obrisi(naziv).then(() =>{
+        odgovor.send(true);
     }).catch((error) => {
         console.log(error);
     })
