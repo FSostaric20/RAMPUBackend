@@ -111,15 +111,15 @@ function getNamirnice(zahtjev,odgovor){
         let mjDAO = new mjernajedinicaDAO();
         let mjernajedinica = await mjDAO.dajSve();
         for(namirnica in poruka){
-            console.log(namirnica +". NAMIRNICA:" +JSON.stringify(poruka[namirnica])+ "\n")
+            //console.log(namirnica +". NAMIRNICA:" +JSON.stringify(poruka[namirnica])+ "\n")
                 for(mj in mjernajedinica){
-                    console.log(namirnica+ " . NAMIRNICA: "+ " PROVJERA ZA MJERNU JEDINICU: "+JSON.stringify(mjernajedinica[mj]))
+                    //console.log(namirnica+ " . NAMIRNICA: "+ " PROVJERA ZA MJERNU JEDINICU: "+JSON.stringify(mjernajedinica[mj]))
                 if(mjernajedinica[mj].id == poruka[namirnica].mjerna_jedinica_id){
 
                     poruka[namirnica]['mjerna_jedinica_id'] = mjernajedinica[mj];
                 }
                 
-                console.log(poruka[namirnica])
+                //console.log(poruka[namirnica])
                 }
                 
             
