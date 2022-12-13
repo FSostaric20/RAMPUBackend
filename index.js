@@ -186,8 +186,8 @@ function putNamirnica(zahtjev,odgovor){
     odgovor.type("application/json")
     let nDAO = new namirnicaDAO();
     let naziv = zahtjev.params.naziv
-    let mjerna_jedinica = zahtjev.body.mjerna_jedinica_id;
-    nDAO.azurirajNamirnicu(naziv, mjerna_jedinica).then(() =>{
+    let novi_podaci = zahtjev.body;
+    nDAO.azurirajNamirnicu(naziv, novi_podaci).then(() =>{
         odgovor.send(true);
     }).catch((error) => {
         console.log(error);

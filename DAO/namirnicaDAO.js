@@ -52,15 +52,9 @@ class namirnicaDAO{
         return true;
     }
 
-    azurirajNamirnicu = async function (naziv, mjerna_jedinica_nova) {
-        console.log("Mjerna jedinica nova je:")
-        console.log(mjerna_jedinica_nova)
-        console.log("Mjerna jedinica nova ID je:")
-        console.log(mjerna_jedinica_nova.id)
-        console.log("Naziv je:")
-        console.log(naziv)
+    azurirajNamirnicu = async function (naziv, novi_podaci) {
         let sql = "UPDATE heroku_d1561a1a0615483.namirnica SET naziv=?, mjerna_jedinica_id=? WHERE naziv=?";
-        let podaci = [naziv,mjerna_jedinica_nova.id,naziv]
+        let podaci = [naziv,novi_podaci.mjerna_jedinica_id.id,novi_podaci.naziv]
         await this.baza.izvrsiUpit(sql,podaci);
         this.baza.zatvoriVezu();
         return true;
