@@ -44,6 +44,7 @@ function pripremiPutanje(){
    
    server.post("/namirnice",postNamirnice)
    server.put("/namirnice",putNamirnice)
+   server.put("/namirnice/:naziv",putNamirnica)
    server.delete("/namirnice/:naziv",deleteNamirnice)
 
    server.post("/",)
@@ -181,7 +182,17 @@ function deleteNamirnice(zahtjev,odgovor){
     })
 }
 
-
+function putNamirnica(zahtjev,odgovor){
+    odgovor.type("application/json")
+    let nDAO = new namirnicaDAO();
+    let naziv = zahtjev.params.naziv
+    let mjerna_jedinica = zahtjev.body.mjerna_jedinica_id;
+    nDAO.azurirajNamirnicu(naziv, mjerna_jedinica).then(() =>{
+        odgovor.send(true);
+    }).catch((error) => {
+        console.log(error);
+    })
+}
 
 function getMjerneJedinice(zahtjev,odgovor){
     odgovor.type("application/json")
