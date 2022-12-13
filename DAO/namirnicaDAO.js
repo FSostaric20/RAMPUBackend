@@ -54,7 +54,7 @@ class namirnicaDAO{
 
     azurirajNamirnicu = async function (naziv, novi_podaci) {
         let sql = "UPDATE heroku_d1561a1a0615483.namirnica SET naziv=?, mjerna_jedinica_id=? WHERE naziv=?";
-        let podaci = [naziv,novi_podaci.mjerna_jedinica_id.id,novi_podaci.naziv]
+        let podaci = [novi_podaci.naziv,novi_podaci.mjerna_jedinica_id.id,naziv]
         await this.baza.izvrsiUpit(sql,podaci);
         this.baza.zatvoriVezu();
         return true;
