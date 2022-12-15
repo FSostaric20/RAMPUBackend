@@ -30,12 +30,14 @@ class receptDAO{
 		let sql = "INSERT INTO heroku_d1561a1a0615483.recept (naziv,opis) VALUES (?,?)";
         let podaci = [naziv,opis];
 		await this.baza.izvrsiUpit(sql,podaci);
+        this.baza.zatvoriVezu();
 		return true;
 	}
 
 	obrisi = async function (id) {
 		let sql = "DELETE FROM heroku_d1561a1a0615483.recept WHERE id=?";
-		await this.baza.izvrsiUpit(sql,[id]);
+		await this.baza.izvrsiUpit(sql,id);
+        this.baza.zatvoriVezu();
 		return true;
 	}
 
@@ -43,6 +45,7 @@ class receptDAO{
         let sql = "UPDATE heroku_d1561a1a0615483.recept SET naziv?, opis=? WHERE id=?";
         let podaci = [naziv,opis,id]
         await this.baza.izvrsiUpit(sql,podaci);
+        this.baza.zatvoriVezu();
         return true;
     }
 
