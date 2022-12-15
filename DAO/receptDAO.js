@@ -35,8 +35,9 @@ class receptDAO{
 	}
 
 	obrisi = async function (id) {
+        console.log("Ovo je ID koji se briše: " + id)
 		let sql = "DELETE FROM heroku_d1561a1a0615483.recept WHERE id=?";
-		await this.baza.izvrsiUpit(sql,id);
+		await this.baza.izvrsiUpit(sql,[id]);
         this.baza.zatvoriVezu();
 		return true;
 	}
