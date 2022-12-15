@@ -94,6 +94,7 @@ function putRecept(zahtjev,odgovor){
 
 function deleteRecept(zahtjev,odgovor){
     odgovor.type("application/json")
+    console.log("Dosao sam do ovdje")
     let rDAO = new receptDAO();
     let id = zahtjev.params.id;
     rDAO.obrisi(id).then(() => {
