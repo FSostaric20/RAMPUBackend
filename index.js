@@ -41,7 +41,7 @@ function pripremiPutanje(){
 
    server.post("/recepti",postRecept)
    server.put("/recepti",putRecept)
-   server.delete("/recepti",deleteRecept)
+   server.delete("/recept/:id",deleteRecept)
    
    server.post("/namirnice",postNamirnice)
    server.put("/namirnice",putNamirnice)
@@ -95,10 +95,11 @@ function putRecept(zahtjev,odgovor){
 
 function deleteRecept(zahtjev,odgovor){
     odgovor.type("application/json")
+    console.log("Dosao sam do ovdje")
     let rDAO = new receptDAO();
-    let id = zahtjev.id;
+    let id = zahtjev.params.id;
     rDAO.obrisi(id).then(() => {
-        odgovor.send("Obrisano");
+        odgovor.send(true);
     }).catch((error) => {
         console.error(error);
     });
