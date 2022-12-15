@@ -13,6 +13,15 @@ class namirnicaDAO{
         this.baza.zatvoriVezu();
         return podaci;
     }
+
+    daj = async function (naziv) {
+        this.baza.spojiSeNaBazu();
+        let sql = "SELECT * FROM heroku_d1561a1a0615483.namirnica WHERE naziv = ?"
+        let podaci = [naziv]
+        await this.baza.izvrsiUpit(sql, podaci)
+        this.baza.zatvoriVezu();
+        return podaci;
+    }
     
     dodaj = async function (namirnica) {
         let sql = "INSERT INTO heroku_d1561a1a0615483.namirnica (naziv,kolicina_hladnjak,mjerna_jedinica_id,kolicina_kupovina) VALUES (?,?,?,?)";
