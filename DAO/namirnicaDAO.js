@@ -18,9 +18,9 @@ class namirnicaDAO{
         this.baza.spojiSeNaBazu();
         let sql = "SELECT * FROM heroku_d1561a1a0615483.namirnica WHERE naziv = ?"
         let podaci = [naziv]
-        await this.baza.izvrsiUpit(sql, podaci)
+        let odgovor = await this.baza.izvrsiUpit(sql, podaci)
         this.baza.zatvoriVezu();
-        return podaci;
+        return odgovor;
     }
     
     dodaj = async function (namirnica) {
