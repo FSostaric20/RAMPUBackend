@@ -138,10 +138,10 @@ function getNamirnica(zahtjev, odgovor){
     let naziv = zahtjev.params.naziv
     
     nDAO.daj(naziv).then(async (poruka) => {
-        console.log("Namirnica koju pretražujemo: " + JSON.parse(poruka))
+        console.log("Namirnica koju pretražujemo: " + JSON.stringify(poruka))
         let mjDAO = new mjernajedinicaDAO();
         let mjernajedinica = await mjDAO.dajSve();
-        console.log("Mjernejedinice (sve)" + JSON.parse(mjernajedinica))
+        console.log("Mjernejedinice (sve)" + JSON.stringify(mjernajedinica))
         for(mj in mjernajedinica){
             console.log(mjernajedinica[mj].id + "==" + poruka.mjerna_jedinica_id)
             if(mjernajedinica[mj].id == poruka.mjerna_jedinica_id){
