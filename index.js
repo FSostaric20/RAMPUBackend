@@ -143,9 +143,9 @@ function getNamirnica(zahtjev, odgovor){
         let mjernajedinica = await mjDAO.dajSve();
         console.log("Mjernejedinice (sve)" + JSON.stringify(mjernajedinica))
         for(mj in mjernajedinica){
-            console.log(mjernajedinica[mj].id + "==" + poruka.mjerna_jedinica_id)
-            if(mjernajedinica[mj].id == poruka.mjerna_jedinica_id){
-                poruka['mjerna_jedinica_id'] = mjernajedinica[mj];
+            console.log(mjernajedinica[mj].id + "==" + poruka[0].mjerna_jedinica_id)
+            if(mjernajedinica[mj].id == poruka[0].mjerna_jedinica_id){
+                poruka[0].mjerna_jedinica_id = mjernajedinica[mj];
             }
         }
         odgovor.send(JSON.stringify({"results" : poruka}));
