@@ -49,7 +49,7 @@ function pripremiPutanje(){
 
    server.post("/",)
    server.put("/",)
-   server.delete("/",)
+   server.delete("/namirnicerecepta/recepti/:id",deleteReceptNamirnice)
    
    server.post("/",)
    server.put("/",)
@@ -238,6 +238,17 @@ function getRecepteNamirnice(zahtjev,odgovor){
     let nrDAO = new namirnicareceptaDAO();
     nrDAO.dajSveRecepte(id).then((poruka) => {
         odgovor.send(JSON.stringify({"results" : poruka}));
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
+function deleteReceptNamirnice(zahtjev,odgovor){
+    odgovor.type("application/json")
+    let id = zahtjev.params.id
+    let nrDAO = new namirnicareceptaDAO();
+    nrDAO.obrisi(id).then(() => {
+        odgovor.send(true);
     }).catch((error) => {
         console.error(error);
     });
