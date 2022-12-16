@@ -33,6 +33,7 @@ function pripremiPutanje(){
     })
    server.get("/recepti",getRecepti)
    server.get("/namirnice",getNamirnice)
+   server.get("/namirnica/:naziv",getNamirnica)
    server.get("/mjernejedinice",getMjerneJedinice)
    server.get("/mjernejedinice/:id",getMjernaJedinica)
    server.get("/namirnicerecepta/recepti/:id",getRecepteNamirnice)
@@ -124,6 +125,25 @@ function getNamirnice(zahtjev,odgovor){
                 }
                 
             
+        }
+        odgovor.send(JSON.stringify({"results" : poruka}));
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
+function getNamirnica(zahtjev, odgovor){
+    odgovor.type("application/json")
+    let nDAO = new namirnicaDAO();
+    let naziv = zahtjev.params.naziv
+    
+    nDAO.daj(naziv).then(async (poruka) => {
+        let mjDAO = new mjernajedinicaDAO();
+        let mjernajedinica = await mjDAO.dajSve();
+        for(mj in mjernajedinica){
+            if(mjernajedinica[mj].id == poruka[namirnica].mjerna_jedinica_id){
+                poruka[namirnica]['mjerna_jedinica_id'] = mjernajedinica[mj];
+            }
         }
         odgovor.send(JSON.stringify({"results" : poruka}));
     }).catch((error) => {
