@@ -146,6 +146,7 @@ function getNamirnica(zahtjev, odgovor){
             console.log(mjernajedinica[mj].id + "==" + poruka[0].mjerna_jedinica_id)
             if(mjernajedinica[mj].id == poruka[0].mjerna_jedinica_id){
                 poruka[0].mjerna_jedinica_id = mjernajedinica[mj];
+                break;
             }
         }
         odgovor.send(JSON.stringify({"results" : poruka}));
