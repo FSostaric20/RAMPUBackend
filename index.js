@@ -97,6 +97,7 @@ function getRecept(zahtjev,odgovor){
     let rDAO = new receptDAO();
     let naziv = zahtjev.naziv;
     rDAO.daj(naziv).then((recept) => {
+        console.log(JSON.stringify(recept))
         odgovor.send(recept);
     }).catch((error) => {
         console.error(error);
