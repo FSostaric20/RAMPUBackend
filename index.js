@@ -39,7 +39,7 @@ function pripremiPutanje(){
    server.get("/namirnicerecepta/recepti/:id",getRecepteNamirnice)
    server.get("/namirnicerecepta/namirnice/:id",getNamirniceRecepta)
 
-   server.get("/recept",getRecept)
+   server.get("/recept/:naziv",getRecept)
    server.post("/recepti",postRecept)
    server.put("/recepti",putRecept)
    server.delete("/recept/:id",deleteRecept)
@@ -95,7 +95,7 @@ function putRecept(zahtjev,odgovor){
 function getRecept(zahtjev,odgovor){
     odgovor.type("application/json");
     let rDAO = new receptDAO();
-    let naziv = zahtjev.naziv;
+    let naziv = zahtjev.params.naziv;
     rDAO.daj(naziv).then((recept) => {
         console.log(JSON.stringify(recept))
         odgovor.send(recept);
