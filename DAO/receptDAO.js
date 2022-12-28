@@ -25,10 +25,9 @@ class receptDAO{
 			return null;
     }
 
-    dodaj = async function (naziv,opis) {
-        recept = JSON.parse(recept)
+    dodaj = async function (recept) {
 		let sql = "INSERT INTO heroku_d1561a1a0615483.recept (naziv,opis) VALUES (?,?)";
-        let podaci = [naziv,opis];
+        let podaci = [recept.naziv,recept.opis];
 		await this.baza.izvrsiUpit(sql,podaci);
         this.baza.zatvoriVezu();
 		return true;

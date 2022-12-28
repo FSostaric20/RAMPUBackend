@@ -71,10 +71,9 @@ function getRecepti(zahtjev,odgovor){
 function postRecept(zahtjev,odgovor){
     odgovor.type("application/json")
     let rDAO = new receptDAO();
-    let naziv = zahtjev.naziv;
-    let opis = zahtjev.opis;
-    rDAO.dodaj(naziv,opis).then(() => {
-        odgovor.send("Zahtjev poslan");
+    let podaci = zahtjev.body;
+    rDAO.dodaj(podaci).then(() => {
+        odgovor.send(true);
     }).catch((error) => {
         console.error(error);
     });
