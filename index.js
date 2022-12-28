@@ -39,6 +39,7 @@ function pripremiPutanje(){
    server.get("/namirnicerecepta/recepti/:id",getRecepteNamirnice)
    server.get("/namirnicerecepta/namirnice/:id",getNamirniceRecepta)
 
+   server.get("/recept",getRecept)
    server.post("/recepti",postRecept)
    server.put("/recepti",putRecept)
    server.delete("/recept/:id",deleteRecept)
@@ -48,8 +49,7 @@ function pripremiPutanje(){
    server.put("/namirnica",putNamirnica)
    server.delete("/namirnice/:naziv",deleteNamirnice)
 
-   server.post("/",)
-   server.put("/",)
+   server.post("/namirnicerecepta",postReceptNamirnice)
    server.delete("/namirnicerecepta/recepti/:id",deleteReceptNamirnice)
    
    server.post("/",)
@@ -85,6 +85,17 @@ function putRecept(zahtjev,odgovor){
     let naziv = zahtjev.naziv;
     let opis = zahtjev.opis;
     let id = zahtjev.id;
+    rDAO.azuriraj(naziv,opis,id).then(() => {
+        odgovor.send();
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
+function getRecept(zahtjev,odgovor){
+    odgovor.type("application/json");
+    let rDAO = new receptDAO();
+    let naziv = zahtjev.naziv;
     rDAO.azuriraj(naziv,opis,id).then(() => {
         odgovor.send();
     }).catch((error) => {
@@ -271,6 +282,17 @@ function deleteReceptNamirnice(zahtjev,odgovor){
     let id = zahtjev.params.id
     let nrDAO = new namirnicareceptaDAO();
     nrDAO.obrisi(id).then(() => {
+        odgovor.send(true);
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
+function postReceptNamirnice(zahtjev,odgovor){
+    odgovor.type("application/json")
+    let podaci = zahtjev.body
+    let nrDAO = new namirnicareceptaDAO();
+    nrDAO.dodaj(podaci).then(() => {
         odgovor.send(true);
     }).catch((error) => {
         console.error(error);
