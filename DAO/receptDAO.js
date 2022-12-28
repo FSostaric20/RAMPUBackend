@@ -16,8 +16,8 @@ class receptDAO{
 
     daj = async function (naziv) {
         this.baza.spojiSeNaBazu();
-        let sql = "SELECT * FROM heroku_d1561a1a0615483.recept WHERE naziv LIKE %?%"
-        var podaci = await this.baza.izvrsiUpit(sql, [naziv])
+        let sql = `SELECT * FROM heroku_d1561a1a0615483.recept WHERE naziv LIKE %${naziv}%`
+        var podaci = await this.baza.izvrsiUpit(sql, [])
         this.baza.zatvoriVezu();
         if(podaci.length == 1)
 			return podaci[0];
@@ -42,7 +42,7 @@ class receptDAO{
 	}
 
     azuriraj = async function (naziv,opis,id) {
-        let sql = "UPDATE heroku_d1561a1a0615483.recept SET naziv?, opis=? WHERE id=?";
+        let sql = "UPDATE heroku_d1561a1a0615483.recept SET naziv=?, opis=? WHERE id=?";
         let podaci = [naziv,opis,id]
         await this.baza.izvrsiUpit(sql,podaci);
         this.baza.zatvoriVezu();
