@@ -292,7 +292,7 @@ function deleteReceptNamirnice(zahtjev,odgovor){
 function postReceptNamirnice(zahtjev,odgovor){
     odgovor.type("application/json")
     let podaci = zahtjev.body
-    console.log("dobivena namirnica: " + podaci);
+    console.log("dobivena namirnica: " + JSON.stringify(podaci));
     let nrDAO = new namirnicareceptaDAO();
     nrDAO.dodaj(podaci).then(() => {
         odgovor.send(true);
