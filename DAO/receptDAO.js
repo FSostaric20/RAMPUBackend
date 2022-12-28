@@ -16,8 +16,8 @@ class receptDAO{
 
     daj = async function (naziv) {
         this.baza.spojiSeNaBazu();
-        let sql = `SELECT * FROM heroku_d1561a1a0615483.recept WHERE naziv LIKE %${naziv}%`
-        var podaci = await this.baza.izvrsiUpit(sql, [])
+        let sql = `SELECT * FROM heroku_d1561a1a0615483.recept WHERE naziv = ?`
+        var podaci = await this.baza.izvrsiUpit(sql, [naziv])
         this.baza.zatvoriVezu();
         if(podaci.length == 1)
 			return podaci[0];
