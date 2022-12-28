@@ -96,7 +96,7 @@ function getRecept(zahtjev,odgovor){
     odgovor.type("application/json");
     let rDAO = new receptDAO();
     let naziv = zahtjev.naziv;
-    rDAO.azuriraj(naziv,opis,id).then(() => {
+    rDAO.daj(naziv).then(() => {
         odgovor.send();
     }).catch((error) => {
         console.error(error);
